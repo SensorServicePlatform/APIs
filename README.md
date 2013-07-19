@@ -25,6 +25,9 @@ Usage:
 Note: all TimeStamps are in Unix epoch time format to millisecond
 
 - **Get all devices**
+    - **Purpose**: One method call to retrieve all devices registered in SDSP. Each device will also carry all of its 
+                   containing sensors differented by sensor types. (Later you will use "device_id + sensor_type" to 
+                   retrive sensor readings for a specific sensor.
     - **Method**: GET
     - **Semantics**: entering the following requests into your browser returns a list of all the
         - **uri**: user-defined identifier for a device. Each uri is an identifier unique to the
