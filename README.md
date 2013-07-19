@@ -1,6 +1,14 @@
+Executive Summary
+=================
+On top of CMU SensorAndrew, the largest nation-wide campus sensor network, our Sensor Data and Service Platform (SDSP) 
+aims to build a software service layer serving sensor service discovery, reuse, composition, mashup, provisioning, and 
+analysis. Another major objective of our project is to support SDSP-empowered innovative application design and 
+development. Supported by a cloud computing enrironment with high-performance database, SDSP aims to provide a platform 
+to enable and facilitate a variety of research projects in the areas of mobile services, internet of things, 
+cloud computing, big data analytics, software as a service, and social services.
+
 APIs
 ====
-
 API interface for CMUSV Sensor Data and Service Platform
 
 CMU Sensor Service Platform
