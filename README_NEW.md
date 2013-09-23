@@ -15,16 +15,15 @@ CMU Sensor Service Platform
 ===========================
 
 Service URL:
---------
+------------
 
 [http://einstein.sv.cmu.edu][1]
 
 Usage:
 ------
-
 Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion from readable timestamp format to Unix epoch timestamp can be found in http://www.epochconverter.com
 
-1. ## Get all devices ##
+1. ## RETRIEVE ALL DEVICES ##
     - **Method**: GET
     - **Semantics**:
         - **uri**: user-defined identifier for a device. Each uri is an identifier unique to the corresponding device
