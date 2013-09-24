@@ -25,14 +25,15 @@ Usage:
 Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion from readable timestamp format to Unix epoch timestamp can be found in http://www.epochconverter.com
 
 1. **GET ALL DEVICES**
+    - **Purpose**: Retrieve all registered devices' metadata.
     - **Method**: GET
-    - **Input Parameters**:
-        - **uri**: user-defined identifier for a device. Each uri is an identifier unique to the corresponding device
-        - **device_type**: Model of the device. A device is a container (i.e., physical device) object that comprises one or more sensors and is capable of transmitting their readings over a network to a Device Agent.
-        - **device_agent**: a local server or proxy that manages a set of devices registered to it. Device agents can receive data from devices, convert data to another format (eg. JSON), and can transmit it to central server over a LAN or WAN. 
-        - **device_location**: the location of the device that is transmitting sensor data 
-        - **ResultFormat**: either json or csv (2 formats are supported)
     - **URL**: http://einstein.sv.cmu.edu/get_devices/<"ResultFormat">
+    - **Semantics**:
+        - **uri**: User-defined identifier for a device. Each uri is an identifier unique to the corresponding device
+        - **device_type**: Model of the device. A device is a container (i.e., physical device) object that comprises one or more sensors and is capable of transmitting their readings over a network to a Device Agent.
+        - **device_agent**: A local server or proxy that manages a set of devices registered to it. Device agents can receive data from devices, convert data to another format (eg. JSON), and can transmit it to central server over a LAN or WAN. 
+        - **device_location**: The location of the device that is transmitting sensor data. 
+        - **ResultFormat**: Either json or csv (2 formats are supported).
     - **Sample Usages**:
       - **Sample request in csv format**: http://einstein.sv.cmu.edu/get_devices/csv
       - **Sample result in csv format**: <br/>
@@ -42,13 +43,14 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
       - **Sample result in json format**: {"device_type":"Firefly_v3","device_location":"B23.216","device_agent":"SensorAndrew2","uri":"10170202"}
 
 
-2. **GET SENSOR TYPE**
+2. **GET SENSOR TYPES OF A DEVICE**
+    - **Purpose**: Retrieve all sensor types contained in a specific device model (type).
     - **Method**: GET
-    - **Semantics**:        
-        - **DeviceType**: Model of the device.
-        - **SensorType**: Type of the sensor eg. temperature, CO2 level etc. A device type could correspond to multiple sensor types if the device has multiple sensors.
-        - **ResultFormat**: either json or csv
     - **URL**: http://einstein.sv.cmu.edu/get_sensor_type/<"device_type">/<"result_format">
+    - **Semantics**:        
+        - **device_type**: Model of the device.
+        - **sensor_type**: Type of a contained sensor, e.g., temperature, CO2 level etc. A device type could correspond to multiple sensor types if the device has multiple sensors.
+        - **result_format**: Either json or csv.
     - **Sample Usages**:
       - **Sample csv request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/csv
       - **Sample csv result**: <br/>
