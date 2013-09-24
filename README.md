@@ -1,6 +1,6 @@
 Last updated: Jia Zhang, 9/24/2013
 
-Executive Summary
+EXECUTIVE SUMMARY
 =================
 On top of CMU SensorAndrew, the largest nation-wide campus sensor network, our Sensor Data and Service Platform (SDSP) 
 aims to build a software service layer serving sensor data service discovery, reuse, composition, mashup, provisioning, and 
