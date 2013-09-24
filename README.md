@@ -1,3 +1,5 @@
+Last updated: Jia Zhang, 9/24/2013
+
 Executive Summary
 =================
 On top of CMU SensorAndrew, the largest nation-wide campus sensor network, our Sensor Data and Service Platform (SDSP) 
@@ -61,14 +63,15 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
       - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
 
 
-3. **Add sensor readings**
+3. **PUBLISH SENSOR READINGS**
+    - **Purpose**: Publish sensor readings to sensor data service platform.
     - **Method**: POST
-    - **Semantics**: this is a POST method, so the command cannot be directly execute through the browser.  It may be executed through Rails, JQuery, Python, BASH, etc.
-        - **device id** (string): device uri/id
-        - **timestamp** (int): time of the reading in Unix epoch timestamp. 
-        - **sensor type** (string): Type of the sensor, such as temperature, CO2Levels, etc. It is up to the user to choose the sensor type to post to.
-        - **sensor value** (double): this input corresponds to the value the user would like to post. It is up to the user to post the correct, pertinent value that correctly corresponds to the sensor type.
     - **URL**: http://einstein.sv.cmu.edu/sensors
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
+        - **device_id** (string): Unique device uri/id.
+        - **timestamp** (int): Recording timestamp of the sensor reading in Unix epoch timestamp format. 
+        - **sensor_type** (string): Type of the sensor, e.g., temperature, CO2 Levels, etc. It is user's responsibility to tag the correct sensor type to the sensor reading.
+        - **sensor_value** (double): The value of the sensor reading. It is up to the user to post the correct, pertinent value that correctly corresponds to the sensor type.
     - **Data**: {"id": <"device id">, "timestamp": <"timestamp">, <"sensor type">: <"sensor value">} 
         <br/> Note: more than one sensor type:sensor value pairs can be included in the json.   
     - **Command Line Example**: 
