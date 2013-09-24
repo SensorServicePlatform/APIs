@@ -27,7 +27,7 @@ Usage:
 Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion from readable timestamp format to Unix epoch timestamp can be found in http://www.epochconverter.com
 
 1. **GET ALL DEVICES**
-    - **Purpose**: Retrieve all registered devices' metadata.
+    - **Purpose**: Query all registered devices' metadata.
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/get_devices/<"ResultFormat">
     - **Semantics**:
@@ -46,7 +46,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
 
 
 2. **GET SENSOR TYPES OF A DEVICE**
-    - **Purpose**: Retrieve all sensor types contained in a specific device model (type).
+    - **Purpose**: Query all sensor types contained in a specific device model (type).
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/get_sensor_type/<"device_type">/<"result_format">
     - **Semantics**:        
@@ -76,61 +76,67 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         <br/> Note: more than one (sensor_type:sensor_value) pairs can be included in a json file.   
     - **Sample Usages**:
       - **Command Line Example**: 
-          1. Prepare input sensor reading data in a JSON file:
+          1. Prepare input sensor reading data in a json file:
               - "sample_reading.json" file contains: {"id":"test", "timestamp": 1373566899100, "temp": 123}
           2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
       - **Result**: "saved" if the sensor readings have been successfully added to the database.
 
-4. **Get sensor readings at a specific time**
+4. **GET SENSOR READINGS OF A TYPE OF SENSOR IN A DEVICE AT A TIME**
+    - **Purpose**: Query sensor readings for a specific type of sensor, in a particular device, at a specific time point.
     - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/sensors/<"device_id">/<"timestamp">/<"sensor_type">/<"result_format">
     - **Semantics**: 
-        - **DeviceID**: The device uri/unique identifier
-        - **TimeStamp**: Time of the reading to query
-        - **SensorType**: Type of the sensor (temperature, CO2, etc.)
-        - **ResultFormat**: either json or csv
-    - **URL**: http://einstein.sv.cmu.edu/sensors/<"DeviceID">/<"TimeStamp">/<"SensorType">/<"ResultFormat">
-    - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/csv<br/>("temp" is the temperature sensor type)
-    - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>10170102,1368568896000,temp,518.0
-    - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/json
-    - **Sample json result**: {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}
+        - **device_id**: Unique uri/identifier of a device.
+        - **timestamp**: Time of the readings to query.
+        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.) to query.
+        - **result_format**: Either json or csv.
+    - **Sample Usages**: 
+      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/csv<br/> (note: "temp" represents the temperature sensor type)
+      - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>10170102,1368568896000,temp,518.0
+      - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/json
+      - **Sample json result**: {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}
 
-5. **Get sensor readings in a time range**
+5. **GET SENSOR READINGS IN A TIME RANGE FOR A DEVICE**
+    - **Purpose**: Query sensor readings for a specific type of sensor, in a particular device, for a specific time range. 
     - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/sensors/<"device_id">/<"start_time">/<"end_time">/<"sensor_type">/<"result_format">
     - **Semantics**:
-        - **DeviceID**: The device uri/unique identifier
-        - **StartTime**: Start time to retrieve the readings
-        - **EndTime**: End time to retreive the readings
-        - **SensorType**: Type of the sensor (temperature, CO2, etc.)
-        - **ResultFormat**: either json or csv
-    - **URL**: http://einstein.sv.cmu.edu/sensors/<"DeviceID">/<"StartTime">/<"EndTime">/<"SensorType">/<"ResultFormat">
-    - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/1368568996000/temp/csv
-    - **Sample csv result**: (device_id,timestamp,sensor_type,value)<br/>
-        10170102,1368568993000,temp,517.0 <br/>
-        ... <br/>
-        10170102,1368568896000,temp,518.0
-    - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/1368568996000/temp/json
-    - **Sample json result**: <br/>
-        [{"timestamp":1368568993000,"sensor_type":"temp","value":517,"device_id":"10170102"},
-        ... <br/>
-        {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}]
+        - **device_id**: Unique uri/identifier of a device.
+        - **start_time**: Start time to retrieve the sensor readings.
+        - **end_time**: End time to retreive the sensor readings.
+        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.) to retrieve its readings.
+        - **result_format**: Either json or csv.
+    - **Sample Usages**: 
+      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/1368568996000/temp/csv
+      - **Sample csv result**: (device_id,timestamp,sensor_type,value)<br/>
+          10170102,1368568993000,temp,517.0 <br/>
+          ... <br/>
+          10170102,1368568896000,temp,518.0
+      - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/1368568996000/temp/json
+      - **Sample json result**: <br/>
+          [{"timestamp":1368568993000,"sensor_type":"temp","value":517,"device_id":"10170102"},
+          ... <br/>
+          {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
-6. **Get the latest readings at specific time from all devices**
+6. **GET LATEST SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
+    - **Purpose**: Query all sensor readings at a time point, of a specific sensor type contained in all registered devices. If no reading for a sensor, the latest stored reading of the corresponding sensor will be returned.
     - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/<"timestamp">/<"sensor_type">/<"result_format">
     - **Semantics**:
-        - **TimeStamp**: Time to get the last readings. The query returns the latest readings up to 60 seconds before this time.
-        - **SensorType**: Type of the sensor (temperature, CO2, etc.)
-        - **ResultFormat**: either json or csv
-    - **URL**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/<"TimeStamp">/<"sensorType">/<"ResultFormat">
-    - **Sample csv request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/csv
-    - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>
-        10170203,1368568896000,temp,513.0 <br/>
-        ... <br/>
-        10170204,1368568889000,temp,513.0
-    - **Sample json request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/json
-    - **Sample json result**: <br/>
-        [{"timestamp":1368568896000,"sensor_type":"temp","value":513,"device_id":"10170203"},
-        ... <br/>
-        {"timestamp":1368568889000,"sensor_type":"temp","value":513,"device_id":"10170204"}]
+        - **timestamp**: Time to query the last readings of all sensors for all devices registered at the sensor data service platform.
+        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.)
+        - **result_format**: Either json or csv.
+    - **Sample Usages**: 
+      - **Sample csv request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/csv
+      - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>
+          10170203,1368568896000,temp,513.0 <br/>
+          ... <br/>
+          10170204,1368568889000,temp,513.0
+      - **Sample json request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/json
+      - **Sample json result**: <br/>
+          [{"timestamp":1368568896000,"sensor_type":"temp","value":513,"device_id":"10170203"},
+          ... <br/>
+          {"timestamp":1368568889000,"sensor_type":"temp","value":515,"device_id":"10170204"}]
 
 
 7. **Get the latest readings at current time from all devices**
