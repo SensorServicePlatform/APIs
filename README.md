@@ -31,14 +31,15 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         - **device_type**: Model of the device. A device is a container (i.e., physical device) object that comprises one or more sensors and is capable of transmitting their readings over a network to a Device Agent.
         - **device_agent**: a local server or proxy that manages a set of devices registered to it. Device agents can receive data from devices, convert data to another format (eg. JSON), and can transmit it to central server over a LAN or WAN. 
         - **device_location**: the location of the device that is transmitting sensor data 
-        - **ResultFormat**: either json or csv
+        - **ResultFormat**: either json or csv (2 formats are supported)
     - **URL**: http://einstein.sv.cmu.edu/get_devices/<"ResultFormat">
-    - **Sample csv request**: http://einstein.sv.cmu.edu/get_devices/csv
-    - **Sample csv result**: <br/>
-        uri,device_type,device_agent,device_location <br/>
-        10170202,Firefly_v3,SensorAndrew2,B23.216
-    - **Sample json request**: http://einstein.sv.cmu.edu/get_devices/json
-    - **Sample json result**: {"device_type":"Firefly_v3","device_location":"B23.216","device_agent":"SensorAndrew2","uri":"10170202"}
+    - **Sample usages**:
+      - **Sample request in csv format**: http://einstein.sv.cmu.edu/get_devices/csv
+      - **Sample result in csv format**: <br/>
+          uri,device_type,device_agent,device_location <br/>
+          10170202,Firefly_v3,SensorAndrew2,B23.216
+      - **Sample request in json format**: http://einstein.sv.cmu.edu/get_devices/json
+      - **Sample result in json format**: {"device_type":"Firefly_v3","device_location":"B23.216","device_agent":"SensorAndrew2","uri":"10170202"}
 
 - **Get sensor type**
     - **Method**: GET
