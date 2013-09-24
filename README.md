@@ -5,25 +5,20 @@ Executive Summary
 On top of CMU SensorAndrew, the largest nation-wide campus sensor network, our Sensor Data and Service Platform (SDSP) 
 aims to build a software service layer serving sensor data service discovery, reuse, composition, mashup, provisioning, and 
 analysis. Another major objective of our project is to support SDSP-empowered innovative application design and 
-development. Supported by a cloud computing enrironment with high-performance database, SDSP aims to provide a platform 
-to enable and facilitate a variety of research projects in the areas of mobile services, internet of things, 
+development. Supported by a cloud computing enrironment with high-performance database, SDSP provides a platform 
+to enable and facilitate a variety of research projects at CMUSV in the areas of mobile services, internet of things, 
 cloud computing, big data analytics, software as a service, and social services.
 
-APIs
-====
-API interface for CMUSV Sensor Data and Service Platform (SDSP)
-
-CMU Sensor Service Platform
-===========================
-
+CMUSV Sensor Data Service Platform
+===================================
 Service URL:
 ------------
-
 [http://einstein.sv.cmu.edu][1]
 
-Usage:
-------
 
+
+Detailed Usages:
+----------------
 Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion from readable timestamp format to Unix epoch timestamp can be found in http://www.epochconverter.com
 
 1. **GET ALL DEVICES**
