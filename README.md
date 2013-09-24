@@ -15,7 +15,7 @@ CMU Sensor Service Platform
 ===========================
 
 Service URL:
---------
+------------
 
 [http://einstein.sv.cmu.edu][1]
 
@@ -26,7 +26,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
 
 1. ## Get all devices ##
     - **Method**: GET
-    - **Semantics**:
+    - **Input Parameters**:
         - **uri**: user-defined identifier for a device. Each uri is an identifier unique to the corresponding device
         - **device_type**: Model of the device. A device is a container (i.e., physical device) object that comprises one or more sensors and is capable of transmitting their readings over a network to a Device Agent.
         - **device_agent**: a local server or proxy that manages a set of devices registered to it. Device agents can receive data from devices, convert data to another format (eg. JSON), and can transmit it to central server over a LAN or WAN. 
