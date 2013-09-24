@@ -58,7 +58,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
     - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
 
 
-- **Add sensor readings**
+3. **Add sensor readings**
     - **Method**: POST
     - **Semantics**: this is a POST method, so the command cannot be directly execute through the browser.  It may be executed through Rails, JQuery, Python, BASH, etc.
         - **device id** (string): device uri/id
@@ -74,7 +74,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
     - **Result**: "saved" if the reading has been successfully added to the database.
 
-- **Get sensor readings at a specific time**
+4. **Get sensor readings at a specific time**
     - **Method**: GET
     - **Semantics**: 
         - **DeviceID**: The device uri/unique identifier
@@ -87,7 +87,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
     - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/json
     - **Sample json result**: {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}
 
-- **Get sensor readings in a time range**
+5. **Get sensor readings in a time range**
     - **Method**: GET
     - **Semantics**:
         - **DeviceID**: The device uri/unique identifier
@@ -107,7 +107,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         ... <br/>
         {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
-- **Get the latest readings at specific time from all devices**
+6. **Get the latest readings at specific time from all devices**
     - **Method**: GET
     - **Semantics**:
         - **TimeStamp**: Time to get the last readings. The query returns the latest readings up to 60 seconds before this time.
@@ -126,7 +126,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         {"timestamp":1368568889000,"sensor_type":"temp","value":513,"device_id":"10170204"}]
 
 
-- **Get the latest readings at current time from all devices**
+7. **Get the latest readings at current time from all devices**
     - **Method**: GET
     - **Semantics**:
         - **SensorType**: Type of the sensor (temperature, CO2, etc.)
