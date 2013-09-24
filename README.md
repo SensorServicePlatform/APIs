@@ -48,14 +48,15 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         - **DeviceType**: Model of the device.
         - **SensorType**: Type of the sensor eg. temperature, CO2 level etc. A device type could correspond to multiple sensor types if the device has multiple sensors.
         - **ResultFormat**: either json or csv
-    - **URL**: http://einstein.sv.cmu.edu/get_sensor_type/<"DeviceType">/<"ResultFormat">
-    - **Sample csv request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/csv
-    - **Sample csv result**: <br/>
-        sensor_types<br/>
-        temp<br/>
-        digital_temp
-    - **Sample json request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/json        
-    - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
+    - **URL**: http://einstein.sv.cmu.edu/get_sensor_type/<"device_type">/<"result_format">
+    - **Sample Usages**:
+      - **Sample csv request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/csv
+      - **Sample csv result**: <br/>
+          sensor_types<br/>
+          temp<br/>
+          digital_temp
+      - **Sample json request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/json        
+      - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
 
 
 3. **Add sensor readings**
