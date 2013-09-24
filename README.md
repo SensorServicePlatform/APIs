@@ -119,45 +119,47 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
 6. **GET LATEST SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
-    - **Purpose**: Query all sensor readings at a time point, of a specific sensor type contained in all registered devices. If no reading for a sensor, the latest stored reading of the corresponding sensor will be returned.
+    - **Purpose**: Query all sensor readings at a time point (within 60 seconds), of a specific sensor type contained in all registered devices.
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/<"timestamp">/<"sensor_type">/<"result_format">
     - **Semantics**:
         - **timestamp**: Time to query the last readings of all sensors for all devices registered at the sensor data service platform.
-        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.)
+        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.).
         - **result_format**: Either json or csv.
     - **Sample Usages**: 
       - **Sample csv request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/csv
       - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>
           10170203,1368568896000,temp,513.0 <br/>
           ... <br/>
-          10170204,1368568889000,temp,513.0
+          10170204,1368568889000,temp,516.0
       - **Sample json request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/json
       - **Sample json result**: <br/>
           [{"timestamp":1368568896000,"sensor_type":"temp","value":513,"device_id":"10170203"},
           ... <br/>
-          {"timestamp":1368568889000,"sensor_type":"temp","value":515,"device_id":"10170204"}]
+          {"timestamp":1368568889000,"sensor_type":"temp","value":516,"device_id":"10170204"}]
 
 
 7. **Get the latest readings at current time from all devices**
+    - **Purpose**: Query all latest sensor readings, of a specific sensor type contained in all devices.  If no reading for a sensor in the last 60 seconds, the latest stored reading of the corresponding sensor will be returned. 
     - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/<"sensor_type">/<"result_format">
     - **Semantics**:
-        - **SensorType**: Type of the sensor (temperature, CO2, etc.)
-        - **ResultFormat**: either json or csv
-        - Note: the difference between this API and last_readings_from_all_devices given the current timestamp is that this API returns the last reading from each device even if it's more than 60 seconds old.
-    - **URL**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/<"sensorType">/<"ResultFormat">
-    - **Sample csv request**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/temp/csv     
-    - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>
-        10170203,1368568896000,temp,513.0 <br/>
-        ... <br/>
-        10170204,1368568889000,temp,513.0
-    - **Sample json request**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/temp/json
-    - **Sample json result**: <br/>
+        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.).
+        - **result_format**: Either json or csv.
+        - Note: The difference between API#7 and API#6 (last_readings_from_all_devices) given the current timestamp is that, API#7 returns the last readings stored for each device even if it is more than 60 seconds old.
+    - **Sample Usages**: 
+      - **Sample csv request**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/temp/csv     
+      - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>
+          10170203,1368568896000,temp,513.0 <br/>
+          ... <br/>
+          10170204,1368568889000,temp,515.0
+      - **Sample json request**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/temp/json
+      - **Sample json result**: <br/>
         [{"timestamp":1368568896000,"sensor_type":"temp","value":513,"device_id":"10170203"},
         ... <br/>
-        {"timestamp":1368568889000,"sensor_type":"temp","value":513,"device_id":"10170204"}]
+        {"timestamp":1368568889000,"sensor_type":"temp","value":515,"device_id":"10170204"}]
 
 
 
-[1]: http://einstein.sv.cmu.edu/ "Application Server runs in Smart Spaces Lab"
+[1]: http://einstein.sv.cmu.edu/ "The Application Server running in the Smart Spaces Lab, CMUSV"
 
