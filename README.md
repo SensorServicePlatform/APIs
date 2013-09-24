@@ -71,14 +71,15 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         - **device_id** (string): Unique device uri/id.
         - **timestamp** (int): Recording timestamp of the sensor reading in Unix epoch timestamp format. 
         - **sensor_type** (string): Type of the sensor, e.g., temperature, CO2 Levels, etc. It is user's responsibility to tag the correct sensor type to the sensor reading.
-        - **sensor_value** (double): The value of the sensor reading. It is up to the user to post the correct, pertinent value that correctly corresponds to the sensor type.
-    - **Data**: {"id": <"device id">, "timestamp": <"timestamp">, <"sensor type">: <"sensor value">} 
-        <br/> Note: more than one sensor type:sensor value pairs can be included in the json.   
-    - **Command Line Example**: 
-        1. input sensor reading data in a JSON file
-            - sample_reading.json contains {"id":"test", "timestamp": 1373566899100, "temp": 123}
-        2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
-    - **Result**: "saved" if the reading has been successfully added to the database.
+        - **sensor_value** (double): The value of the sensor reading. It is user's responsibility to calibrate the sensor readings before publishing.
+    - **Sensor data format**: {"id": <"device_id">, "timestamp": <"timestamp">, <"sensor_type">: <"sensor_value">} 
+        <br/> Note: more than one (sensor_type:sensor_value) pairs can be included in a json file.   
+    - **Sample Usages**:
+      - **Command Line Example**: 
+          1. Prepare input sensor reading data in a JSON file:
+              - "sample_reading.json" file contains: {"id":"test", "timestamp": 1373566899100, "temp": 123}
+          2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
+      - **Result**: "saved" if the sensor readings have been successfully added to the database.
 
 4. **Get sensor readings at a specific time**
     - **Method**: GET
