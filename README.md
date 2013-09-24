@@ -24,7 +24,7 @@ Usage:
 
 Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion from readable timestamp format to Unix epoch timestamp can be found in http://www.epochconverter.com
 
-1. ## Get all devices ##
+1. **GET ALL DEVICES**
     - **Method**: GET
     - **Input Parameters**:
         - **uri**: user-defined identifier for a device. Each uri is an identifier unique to the corresponding device
@@ -33,7 +33,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         - **device_location**: the location of the device that is transmitting sensor data 
         - **ResultFormat**: either json or csv (2 formats are supported)
     - **URL**: http://einstein.sv.cmu.edu/get_devices/<"ResultFormat">
-    - **Sample usages**:
+    - **Sample Usages**:
       - **Sample request in csv format**: http://einstein.sv.cmu.edu/get_devices/csv
       - **Sample result in csv format**: <br/>
           uri,device_type,device_agent,device_location <br/>
