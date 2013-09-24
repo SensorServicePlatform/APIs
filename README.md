@@ -41,7 +41,8 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
       - **Sample request in json format**: http://einstein.sv.cmu.edu/get_devices/json
       - **Sample result in json format**: {"device_type":"Firefly_v3","device_location":"B23.216","device_agent":"SensorAndrew2","uri":"10170202"}
 
-- **Get sensor type**
+
+2. **GET SENSOR TYPE**
     - **Method**: GET
     - **Semantics**:        
         - **DeviceType**: Model of the device.
