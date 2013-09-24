@@ -16,6 +16,23 @@ Service URL:
 [http://einstein.sv.cmu.edu][1]
 
 
+Overview:
+---------
+Currently we are providing APIs in 3 categores:
+
+Category 1: Post sensor readings
+    -Post sensor reading data through a file (#3)
+    
+Category 2: Query database for sensor readings
+    -Get sensor reading at a time point, for a sensor in a device (#4)
+    -Get sensor readings in a time frame, for a sensor in a device (#5)
+    -Get current sensor readings for a sensor type in all registered devices (#6)
+    -Get latest sensor readings for a sensor type in all registered devices (#7)
+
+Category 3: Query database for metadata
+    -Get all devices registered (#1)
+    -Get all sensor types of a specific device (#2)
+    
 
 Detailed Usages:
 ----------------
@@ -113,7 +130,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           ... <br/>
           {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
-6. **GET LATEST SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
+6. **GET CURRENT SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
     - **Purpose**: Query all sensor readings at a time point (within 60 seconds), of a specific sensor type contained in all registered devices.
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/<"timestamp">/<"sensor_type">/<"result_format">
@@ -134,7 +151,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           {"timestamp":1368568889000,"sensor_type":"temp","value":516,"device_id":"10170204"}]
 
 
-7. **Get the latest readings at current time from all devices**
+7. **GET LATEST SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
     - **Purpose**: Query all latest sensor readings, of a specific sensor type contained in all devices.  If no reading for a sensor in the last 60 seconds, the latest stored reading of the corresponding sensor will be returned. 
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/<"sensor_type">/<"result_format">
