@@ -20,16 +20,16 @@ Overview:
 ---------
 Currently we are providing APIs in 3 categores:
 
-Category 1: Post sensor readings<br/>
+**Category 1: Post sensor readings**<br/>
     -Post sensor reading data through a file (#3)<br/>
     
-Category 2: Query database for sensor readings<br/>
+**Category 2: Query database for sensor readings**<br/>
     -Get sensor reading at a time point, for a sensor in a device (#4)<br/>
     -Get sensor readings in a time frame, for a sensor in a device (#5)<br/>
     -Get current sensor readings for a sensor type in all registered devices (#6)<br/>
     -Get latest sensor readings for a sensor type in all registered devices (#7)
 
-Category 3: Query database for metadata<br/>
+**Category 3: Query database for metadata**<br/>
     -Get all devices registered (#1)<br/>
     -Get all sensor types of a specific device (#2)<br/>
     
