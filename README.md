@@ -24,8 +24,8 @@ Currently we are providing APIs in 3 categores:
     -Post sensor reading data through a file (#3)<br/>
     
 **Category 2: Query database for sensor readings**<br/>
-    -Get sensor reading at a time point, for a sensor in a device (#4)<br/>
-    -Get sensor readings in a time frame, for a sensor in a device (#5)<br/>
+    -Get sensor reading at a time point, for a sensor (specify by sensor type) in a device (#4)<br/>
+    -Get sensor readings in a time frame, for a sensor (specify by sensor type) in a device (#5)<br/>
     -Get current sensor readings for a sensor type in all registered devices (#6)<br/>
     -Get latest sensor readings for a sensor type in all registered devices (#7)
 
@@ -41,13 +41,13 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
 1. **GET ALL DEVICES**
     - **Purpose**: Query all registered devices' metadata.
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/get_devices/<"ResultFormat">
+    - **URL**: http://einstein.sv.cmu.edu/get_devices/<"result_format">
     - **Semantics**:
         - **uri**: User-defined identifier for a device. Each uri is an identifier unique to the corresponding device
         - **device_type**: Model of the device. A device is a container (i.e., physical device) object that comprises one or more sensors and is capable of transmitting their readings over a network to a Device Agent.
         - **device_agent**: A local server or proxy that manages a set of devices registered to it. Device agents can receive data from devices, convert data to another format (eg. JSON), and can transmit it to central server over a LAN or WAN. 
         - **device_location**: The location of the device that is transmitting sensor data. 
-        - **ResultFormat**: Either json or csv (2 formats are supported).
+        - **result_format**: Either json or csv (2 formats are supported).
     - **Sample Usages**:
       - **Sample request in csv format**: http://einstein.sv.cmu.edu/get_devices/csv
       - **Sample result in csv format**: <br/>
