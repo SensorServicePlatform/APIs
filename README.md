@@ -21,24 +21,24 @@ Overview:
 Currently we are providing APIs in 3 categores:
 
 **Category 1: Post sensor readings**<br/>
-    -Post sensor reading data through a file (#3)<br/>
+   - [Post sensor reading data through a file](#3)<br/>
     
 **Category 2: Query database for sensor readings**<br/>
-    -Get sensor reading at a time point, for a sensor (specify by sensor type) in a device (#4)<br/>
-    -Get sensor readings in a time frame, for a sensor (specify by sensor type) in a device (#5)<br/>
-    -Get current sensor readings for a sensor type in all registered devices (#6)<br/>
-    -Get latest sensor readings for a sensor type in all registered devices (#7)
+   - [Get sensor reading at a time point, for a sensor (specify by sensor type) in a device](#4)<br/>
+   - [Get sensor readings in a time frame, for a sensor (specify by sensor type) in a device](#5)<br/>
+   - [Get current sensor readings for a sensor type in all registered devices](#6)<br/>
+   - [Get latest sensor readings for a sensor type in all registered devices](#7)
 
 **Category 3: Query database for metadata**<br/>
-    -Get all devices registered (#1)<br/>
-    -Get all sensor types of a specific device (#2)<br/>
+   - [Get all devices registered](#1)<br/>
+   - [Get all sensor types of a specific device](#2)<br/>
     
 
 Detailed Usages:
 ----------------
 Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion from readable timestamp format to Unix epoch timestamp can be found in http://www.epochconverter.com
 
-1. **GET ALL DEVICES**
+1. <a name="1"></a>**GET ALL DEVICES**
     - **Purpose**: Query all registered devices' metadata.
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/get_devices/<"result_format">
@@ -57,7 +57,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
       - **Sample result in json format**: {"device_type":"Firefly_v3","device_location":"B23.216","device_agent":"SensorAndrew2","uri":"10170202"}
 
 
-2. **GET SENSOR TYPES OF A DEVICE**
+2. <a name="2"></a>**GET SENSOR TYPES OF A DEVICE**
     - **Purpose**: Query all sensor types contained in a specific device model (type).
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/get_sensor_type/<"device_type">/<"result_format">
@@ -75,7 +75,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
       - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
 
 
-3. **PUBLISH SENSOR READINGS**
+3. <a name="3"></a>**PUBLISH SENSOR READINGS**
     - **Purpose**: Publish sensor readings to sensor data service platform.
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/sensors
@@ -93,7 +93,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
       - **Result**: "saved" if the sensor readings have been successfully added to the database.
 
-4. **GET SENSOR READINGS OF A TYPE OF SENSOR IN A DEVICE AT A TIME**
+4. <a name="4"></a>**GET SENSOR READINGS OF A TYPE OF SENSOR IN A DEVICE AT A TIME**
     - **Purpose**: Query sensor readings for a specific type of sensor, in a particular device, at a specific time point.
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/sensors/<"device_id">/<"timestamp">/<"sensor_type">/<"result_format">
@@ -108,7 +108,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
       - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/json
       - **Sample json result**: {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}
 
-5. **GET SENSOR READINGS IN A TIME RANGE FOR A DEVICE**
+5. <a name="5"></a>**GET SENSOR READINGS IN A TIME RANGE FOR A DEVICE**
     - **Purpose**: Query sensor readings for a specific type of sensor, in a particular device, for a specific time range. 
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/sensors/<"device_id">/<"start_time">/<"end_time">/<"sensor_type">/<"result_format">
@@ -130,7 +130,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           ... <br/>
           {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
-6. **GET CURRENT SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
+6. <a name="6"></a>**GET CURRENT SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
     - **Purpose**: Query all sensor readings at a time point (within 60 seconds), of a specific sensor type contained in all registered devices.
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/<"timestamp">/<"sensor_type">/<"result_format">
@@ -151,7 +151,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           {"timestamp":1368568889000,"sensor_type":"temp","value":516,"device_id":"10170204"}]
 
 
-7. **GET LATEST SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
+7. <a name="7"></a>**GET LATEST SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
     - **Purpose**: Query all latest sensor readings, of a specific sensor type contained in all devices.  If no reading for a sensor in the last 60 seconds, the latest stored reading of the corresponding sensor will be returned. 
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/<"sensor_type">/<"result_format">
