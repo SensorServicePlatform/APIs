@@ -175,3 +175,11 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
 
 [1]: http://einstein.sv.cmu.edu/ "The Application Server running in the Smart Spaces Lab, CMUSV"
 
+To do items:
+============
+-Provide APIs that allow users to specify human time specification (time zone?).
+-How about when some fields are added or changed for some sensors?
+-Rethink the design of HANA tables, to leverage HANA indexing previlege while keeping records info.
+-Mobile sensor into the picture (location: room, GPS, configurable)?
+
+
