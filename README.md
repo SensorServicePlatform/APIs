@@ -37,17 +37,17 @@ Currently we are providing APIs in 3 categores:
    - [Add a sensor type] (#8)<br/>
    - [Add a sensor] (#9)
    - [Add a device type] (#10)
-   - [Add a device] (#11)<br/>
+   - [Add a device] (#11)
    
    - [Edit a sensor type] (#12)
    - [Edit a sensor] (#13)
    - [Edit a device type] (#14)
-   - [Edit a device] (#15)<br/>
+   - [Edit a device] (#15)
    
-   - [Delete a sensor type] (#16)<br/>
-   - [Delete a sensor] (#17)<br/>
-   - [Delete a device type] (#18)<br/>
-   - [Delete a device] (#19)<br/>
+   - [Delete a sensor type] (#16)
+   - [Delete a sensor] (#17)
+   - [Delete a device type] (#18)
+   - [Delete a device] (#19)
 
 
 Detailed Usages:
