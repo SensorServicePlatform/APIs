@@ -205,7 +205,7 @@ Examples:
    	}
       </code>
    </pre>
-    - Post
+    - POST
    <pre>
       <code>
       import java.net.HttpURLConnection;
