@@ -177,7 +177,24 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
 
 Examples:
 ----------------
-1. Consume Rest API in Java
+1. Consume Rest API in Python
+    - GET
+    <pre>
+      <code>
+         import json, requests
+         response = requests.get("http://einstein.sv.cmu.edu/get_devices/json")
+         print(response.json())
+      </code>
+    </pre>
+    - POST
+    <pre>
+      <code>
+         import requests
+         requests.post("http://einstein.sv.cmu.edu/sensors", data={}, headers={}, files={}, cookies=None, auth=None)
+      </code>
+    </pre>
+    
+2. Consume Rest API in Java
     - GET
    <pre>
       <code>
