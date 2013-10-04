@@ -33,6 +33,22 @@ Currently we are providing APIs in 3 categores:
    - [Get all devices registered](#1)<br/>
    - [Get all sensor types of a specific device](#2)<br/>
     
+**Category 4: Manage metadata---under construction**<br/>
+   - [Add a sensor type] (#8)<br/>
+   - [Add a sensor] (#9)<br/>
+   - [Add a device type] (#10)<br/>
+   - [Add a device] (#11)<br/>
+   
+   - [Edit a sensor type] (#12)<br/>
+   - [Edit a sensor] (#13)<br/>
+   - [Edit a device type] (#14)<br/>
+   - [Edit a device] (#15)<br/>
+   
+   - [Delete a sensor type] (#16)<br/>
+   - [Delete a sensor] (#17)<br/>
+   - [Delete a device type] (#18)<br/>
+   - [Delete a device] (#19)<br/>
+
 
 Detailed Usages:
 ----------------
