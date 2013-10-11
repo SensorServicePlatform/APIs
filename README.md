@@ -185,6 +185,20 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         ... <br/>
         {"timestamp":1368568889000,"sensor_type":"temp","value":515,"device_id":"10170204"}]
 
+8. <a name="8"></a>**ADD SENSOR TYPE**
+    - **Purpose**: Add a new sensor type to sensor data service platform.
+    - **Method**: POST
+    - **URL**: http://einstein.sv.cmu.edu/add_sensor_type
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
+        - **sensor_type** (string): Name of the sensor type.
+        - **user_defined_fields** (string): User defined fields. 
+    - **Sensor data format**: {"sensor_type": <"sensor_type">, "user_defined_fields": <"user_defined_fields">}    
+    - **Sample Usages**:
+      - **Command Line Example**: 
+          1. Prepare input sensor reading data in a json file:
+              - "sensor_type.json" file contains: {"sensor_type": "Humidity", "user_defined_fields": "For test"}
+          2. curl -H "Content-Type: application/json" -d @sensor_type.json "http://einstein.sv.cmu.edu/add_sensor_type"
+      - **Result**: "sensor type saved" if the sensor readings have been successfully added to the database.
 
 
 [1]: http://einstein.sv.cmu.edu/ "The Application Server running in the Smart Spaces Lab, CMUSV"
