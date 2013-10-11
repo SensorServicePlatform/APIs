@@ -1,5 +1,3 @@
-Last updated: Jia Zhang, Bo Liu, 9/30/2013
-
 EXECUTIVE SUMMARY
 =================
 On top of CMU SensorAndrew, the largest nation-wide campus sensor network, our Sensor Data and Service Platform (SDSP) 
@@ -192,13 +190,69 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
         - **sensor_type** (string): Name of the sensor type.
         - **user_defined_fields** (string): User defined fields. 
-    - **Sensor data format**: {"sensor_type": <"sensor_type">, "user_defined_fields": <"user_defined_fields">}    
+    - **Sensor type metadata format**: {"sensor_type": <"sensor_type">, "user_defined_fields": <"user_defined_fields">}    
     - **Sample Usages**:
       - **Command Line Example**: 
-          1. Prepare input sensor reading data in a json file:
+          1. Prepare input sensor type metadata in a json file:
               - "sensor_type.json" file contains: {"sensor_type": "Humidity", "user_defined_fields": "For test"}
           2. curl -H "Content-Type: application/json" -d @sensor_type.json "http://einstein.sv.cmu.edu/add_sensor_type"
-      - **Result**: "sensor type saved" if the sensor readings have been successfully added to the database.
+      - **Result**: "sensor type saved" if the sensor type metadata has been successfully added to the database.
+
+9. <a name="9"></a>**ADD SENSOR**
+    - **Purpose**: Add a new sensor to sensor data service platform.
+    - **Method**: POST
+    - **URL**: http://einstein.sv.cmu.edu/add_sensor
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
+        - **print_name** (string): Name of the sensor.
+        - **sensor_type** (string): Its sensor type.
+        - **device_id** (string): The device ID it belongs to.
+        - **user_defined_fields** (string): User defined fields. 
+    - **Sensor metadata format**: {"print_name": <"print_name">, "sensor_type": <"sensor_type">, "device_id": <"device_id">, "user_defined_fields": <"user_defined_fields">}    
+    - **Sample Usages**:
+      - **Command Line Example**: 
+          1. Prepare input sensor metadata in a json file:
+              - "sensor.json" file contains: {print_name": "test_sensor", "sensor_type": "Humidity", "device_id": "test_id", "user_defined_fields": "For test"}
+          2. curl -H "Content-Type: application/json" -d @sensor.json "http://einstein.sv.cmu.edu/add_sensor"
+      - **Result**: "sensor saved" if the sensor metadata have been successfully added to the database.
+
+10. <a name="10"></a>**ADD DEVICE TYPE**
+    - **Purpose**: Add a new device type to sensor data service platform.
+    - **Method**: POST
+    - **URL**: http://einstein.sv.cmu.edu/add_device_type
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
+        - **device_type_name** (string): Name of the device type.
+        - **manufacturer** (string): Name of the manufacturer.
+        - **version** (string): Version of the device type.
+        - **user_defined_fields** (string): User defined fields. 
+    - **Sensor type metadata format**: {"device_type_name": <"device_type_name">, "manufacturer": <"manufacturer">, "version": <"version">, "user_defined_fields": <"user_defined_fields">}    
+    - **Sample Usages**:
+      - **Command Line Example**: 
+          1. Prepare input device type metadata in a json file:
+              - "device_type.json" file contains: {"device_type_name": "test_device_type", "manufacturer": "TI", "version": "1.0", "user_defined_fields": "For test"}
+          2. curl -H "Content-Type: application/json" -d @sensor_type.json "http://einstein.sv.cmu.edu/add_device_type"
+      - **Result**: "device type saved" if the device type metadata has been successfully added to the database.
+
+11. <a name="11"></a>**ADD DEVICE**
+    - **Purpose**: Add a new device to sensor data service platform.
+    - **Method**: POST
+    - **URL**: http://einstein.sv.cmu.edu/add_device
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
+        - **device_type** (string): Name of the device type.
+        - **device_agent** (string): Name of the device agent.
+        - **network_address** (string): The network address.
+        - **location_description** (string): Location.
+        - **latitude** (string): Latitude.
+        - **longitude** (string): Longitude.
+        - **altitude** (string): Altitude.
+        - **position_format_system** (string): Format of the position.
+        - **user_defined_fields** (string): User defined fields. 
+    - **Sensor metadata format**: {"device_type": <"device_type">, "device_agent": <"device_agent">, "network_address": <"network_address">, "location_description": <"location_description">, "latitude": <"latitude">, "longitude": <"longitude">, "altitude": <"altitude">, "position_format_system": <"position_format_system">, "user_defined_fields": <"user_defined_fields">}    
+    - **Sample Usages**:
+      - **Command Line Example**: 
+          1. Prepare input device metadata in a json file:
+              - "device.json" file contains: {"device_type": "test_device_type", "device_agent": "test_device_agent", "network_address": "test_network_address", "location_description": "test_location_description", "latitude": "test_latitude", "longitude": "test_longitude", "altitude": "test_altitude", "position_format_system": "test_position_format_system", "user_defined_fields": "For test"}
+          2. curl -H "Content-Type: application/json" -d @device.json "http://einstein.sv.cmu.edu/add_device"
+      - **Result**: "device saved" if the device metadata have been successfully added to the database.
 
 
 [1]: http://einstein.sv.cmu.edu/ "The Application Server running in the Smart Spaces Lab, CMUSV"
