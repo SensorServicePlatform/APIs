@@ -10,8 +10,6 @@ development. Supported by a cloud computing enrironment with high-performance da
 to enable and facilitate a variety of research projects at CMUSV in the areas of mobile services, internet of things, 
 cloud computing, big data analytics, software as a service, and social services.
 
-CMUSV Sensor Data Service Platform
-===================================
 Service URL:
 ------------
 [http://einstein.sv.cmu.edu][1]
