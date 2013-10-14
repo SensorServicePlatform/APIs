@@ -22,8 +22,10 @@ Currently we are providing APIs in 3 categores:
    - [Post sensor reading data through a file](#3)<br/>
     
 **Category 2: Query database for sensor readings**<br/>
-   - [Get sensor reading at a time point, for a sensor (specify by sensor type) in a device](#4)<br/>
-   - [Get sensor readings in a time frame, for a sensor (specify by sensor type) in a device](#5)<br/>
+   - [Get sensor reading at a time point by timestamp, for a sensor (specify by sensor type) in a device](#4)<br/>
+   - [Get sensor reading at a time point by readable time, for a sensor (specify by sensor type) in a device](#20)<br/>
+   - [Get sensor readings in a time frame by timestamp, for a sensor (specify by sensor type) in a device](#5)<br/>
+   - [Get sensor readings in a time frame by readable time, for a sensor (specify by sensor type) in a device](#21)<br/>
    - [Get current sensor readings for a sensor type in all registered devices](#6)<br/>
    - [Get latest sensor readings for a sensor type in all registered devices](#7)
 
@@ -254,6 +256,42 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           2. curl -H "Content-Type: application/json" -d @device.json "http://einstein.sv.cmu.edu/add_device"
       - **Result**: "device saved" if the device metadata have been successfully added to the database.
 
+12. <a name="20"></a>**GET SENSOR READINGS OF A TYPE OF SENSOR IN A DEVICE AT A TIME BY READABLE TIME**
+    - **Purpose**: Query sensor readings for a specific type of sensor, in a particular device, at a specific time point.
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/sensors/<"device_id">/<"time">/<"sensor_type">/<"result_format">?dateformat=ISO8601
+    - **Semantics**: 
+        - **device_id**: Unique uri/identifier of a device.
+        - **time**: Time of the readings to query.
+        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.) to query.
+        - **result_format**: Either json or csv.
+    - **Sample Usages**: 
+      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/05-14-2013T15:01:36/temp/csv?dateformat=ISO8601<br/> (note: "temp" represents the temperature sensor type)
+      - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br>10170102,05-04-2013T12:00:00,temp,518.0
+      - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/05-14-2013T15:01:36/temp/json?dateformat=ISO8601
+      - **Sample json result**: {"time":05-04-2013T12:00:00,"sensor_type":"temp","value":518,"device_id":"10170102"}
+
+13. <a name="21"></a>**GET SENSOR READINGS IN A TIME RANGE FOR A DEVICE**
+    - **Purpose**: Query sensor readings for a specific type of sensor, in a particular device, for a specific readable time range. 
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/sensors/<"device_id">/<"start_time">/<"end_time">/<"sensor_type">/<"result_format">?dateformat=ISO8601
+    - **Semantics**:
+        - **device_id**: Unique uri/identifier of a device.
+        - **start_time**: Start readable time to retrieve the sensor readings.
+        - **end_time**: End readable time to retreive the sensor readings.
+        - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.) to retrieve its readings.
+        - **result_format**: Either json or csv.
+    - **Sample Usages**: 
+      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/05-04-2013T12:00:00/05-05-2013T12:00:00/temp/csv?dateformat=ISO8601
+      - **Sample csv result**: (device_id,timestamp,sensor_type,value)<br/>
+          10170102,05-04-2013T12:00:00,temp,517.0 <br/>
+          ... <br/>
+          10170102,05-05-2013T12:00:00,temp,518.0
+      - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/05-04-2013T12:00:00/05-05-2013T12:00:00/temp/json?dateformat=ISO8601
+      - **Sample json result**: <br/>
+          [{"time":05-04-2013T12:00:00,"sensor_type":"temp","value":517,"device_id":"10170102"},
+          ... <br/>
+          {"time":05-05-2013T12:00:00,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
 [1]: http://einstein.sv.cmu.edu/ "The Application Server running in the Smart Spaces Lab, CMUSV"
 
