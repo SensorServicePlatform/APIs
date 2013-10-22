@@ -107,7 +107,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input sensor reading data in a json file:
-              - "sample_reading.json" file contains: {"id":"test", "timestamp": 1373566899100, "temp": 123}
+              - "sample_reading.json" file contains: {"device_id":"test", "timestamp": 1373566899100, "temp": 123}
           2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
       - **Result**: "saved" if the sensor readings have been successfully added to the database.
 
