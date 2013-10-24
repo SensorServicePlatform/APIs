@@ -346,49 +346,68 @@ Examples:
    	}
       </code>
    </pre>
-    - POST
+    - POST (Please download Gson Jar first http://code.google.com/p/google-gson/downloads/list)
    <pre>
       <code>
+      import java.io.BufferedReader;
+      import java.io.IOException;
+      import java.io.InputStreamReader;
+      import java.io.OutputStream;
+      import java.io.OutputStreamWriter;
+      import java.io.Writer;
       import java.net.HttpURLConnection;
       import java.net.URL;
-      import java.net.URLEncoder;
-      public static String httpPost(String urlStr, String[] paramName, String[] paramVal) throws Exception {
-           URL url = new URL(urlStr);
-           HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-           conn.setRequestMethod("POST");
-           conn.setDoOutput(true);
-           conn.setDoInput(true);
-           conn.setUseCaches(false);
-           conn.setAllowUserInteraction(false);
-           conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+      import com.google.gson.JsonObject;
+      
+      public class SensorReadingPostExample {
+         	public static void main(String args[]) throws Exception {
+         		String URLStr = "http://einstein.sv.cmu.edu/sensors";
+         		java.util.Date date = new java.util.Date();
+         		
+         		JsonObject jo = new JsonObject();
+         		//Sample data
+         		jo.addProperty("timestamp", date.getTime());
+         		jo.addProperty("id", "my_test_device_id");
+         		jo.addProperty("temp", 888);
+         		   
+         		httpPostSensorReading(URLStr, jo.toString());
+         	}
          
-           // Create the form content
-           OutputStream out = conn.getOutputStream();
-           Writer writer = new OutputStreamWriter(out, "UTF-8");
-           for (int i = 0; i &lt; paramName.length; i++) {
-             writer.write(paramName[i]);
-             writer.write("=");
-             writer.write(URLEncoder.encode(paramVal[i], "UTF-8"));
-             writer.write("&");
-           }
-           writer.close();
-           out.close();
+         	public static String httpPostSensorReading(String urlStr, String jsonString) throws Exception {
+         		URL url = new URL(urlStr);
+         		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+         		conn.setRequestMethod("POST");
+         		conn.setRequestProperty("Content-Type", "application/json");
+         		conn.setRequestProperty("Accept", "application/json");
+         		conn.setDoOutput(true);
          
-           if (conn.getResponseCode() != 200) {
-             throw new IOException(conn.getResponseMessage());
-           }
+         		// Create the form content
+         		OutputStream out = conn.getOutputStream();
+         		Writer writer = new OutputStreamWriter(out, "UTF-8");
          
-           // Buffer the result into a string
-           BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-           StringBuilder sb = new StringBuilder();
-           String line;
-           while ((line = rd.readLine()) != null) {
-             sb.append(line);
-           }
-           rd.close();
+         		writer.write(jsonString);
          
-           conn.disconnect();
-           return sb.toString();
+         		writer.close();
+         		out.close();
+         
+         		if (conn.getResponseCode() != 200) {
+         			throw new IOException(conn.getResponseMessage());
+         		}
+         
+         		// Buffer the result into a string
+         		BufferedReader rd = new BufferedReader(new InputStreamReader(
+         				conn.getInputStream()));
+         		StringBuilder sb = new StringBuilder();
+         		String line;
+         		while ((line = rd.readLine()) != null) {
+         			sb.append(line);
+         		}
+         		rd.close();
+         
+         		conn.disconnect();
+         		return sb.toString();
+         	}
+      
       }
       </code>
    </pre>
