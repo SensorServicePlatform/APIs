@@ -366,9 +366,9 @@ Examples:
          		
          		JsonObject jo = new JsonObject();
          		//Sample data
-         		jo.addProperty("timestamp", date.getTime());
-         		jo.addProperty("id", "my_test_device_id");
-         		jo.addProperty("temp", 888);
+         		jo.addProperty("timestamp", date.getTime()); //Long type
+         		jo.addProperty("id", "my_test_device_id");   //String type
+         		jo.addProperty("temp", 888);                 //Double type
          		   
          		httpPostSensorReading(URLStr, jo.toString());
          	}
