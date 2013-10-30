@@ -246,7 +246,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
         - **device_type** (string): Name of the device type.
         - **device_agent** (string): Name of the device agent.
-        - **network_address** (string): The network address.
+        - **device_id** (string): The device id (i.e., network address, uri, macaddress to date). This device_id will be needed as a reference in all consequent senarios.
         - **location_description** (string): Location.
         - **latitude** (string): Latitude.
         - **longitude** (string): Longitude.
@@ -257,7 +257,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input device metadata in a json file:
-              - "device.json" file contains: {"device_type": "test_device_type", "device_agent": "test_device_agent", "network_address": "test_network_address", "location_description": "test_location_description", "latitude": "test_latitude", "longitude": "test_longitude", "altitude": "test_altitude", "position_format_system": "test_position_format_system", "user_defined_fields": "For test"}
+              - "device.json" file contains: {"device_type": "test_device_type", "device_agent": "test_device_agent", "device_id": "test_network_address", "location_description": "test_location_description", "latitude": "test_latitude", "longitude": "test_longitude", "altitude": "test_altitude", "position_format_system": "test_position_format_system", "user_defined_fields": "For test"}
           2. curl -H "Content-Type: application/json" -d @device.json "http://einstein.sv.cmu.edu/add_device"
       - **Result**: "device saved" if the device metadata have been successfully added to the database.
 
