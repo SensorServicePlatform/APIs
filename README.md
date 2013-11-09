@@ -109,8 +109,8 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         <br/> Note: more than one (sensor_type:sensor_value) pairs can be included in a json file.   
     - **Sample Usages**:
       - **Command Line Example**: 
-          1. Prepare input sensor reading data in a json file:
-              - "sample_reading.json" file contains: {"device_id":"test", "timestamp": 1373566899100, "temp": 123}
+          1. Prepare input sensor reading data in a json file (**please modify the timestamp to a different value**):
+              - "sample_reading.json" file contains: {"id":"test", "timestamp": 1373566899000, "temp": 123}
           2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
       - **Result**: "saved" if the sensor readings have been successfully added to the database.
 
