@@ -369,9 +369,6 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
         - **date**: the date of the event
         - **startTime**: the starting time of the event
         - **endTime**: the ending time of the event
-    - **Sample Usages**: 
-      - **Sample http request**: http://einstein.sv.cmu.edu/recordEvent/testUser/testEventType/2013-09-01/2013-12-12
-      - **Sample json result**: [{"startTime":"19:50:00","endTime":"20:00:00","date":"2013-11-08","eventTypeName":"testRecord"}]
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input sensor reading data in a json file:
