@@ -67,6 +67,10 @@ Currently we are providing APIs in <font color="green"><b>MG: 4 </b> </font> cat
    - [Delete a sensor](#17)<br/>
    - [Delete a device type](#18)<br/>
    - [Delete a device](#19)<br/>
+
+**Category 5: Manage user events---under construction**
+   - [Get a user event's history](#100)
+   - [Record a user event](#101)
    
    <font color="green"><b>MG: We should add "get-version"</b><br></font>
 
@@ -341,6 +345,40 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
           [{"time":05-04-2013T12:00:00,"sensor_type":"temp","value":517,"device_id":"10170102"},
           ... <br/>
           {"time":05-05-2013T12:00:00,"sensor_type":"temp","value":518,"device_id":"10170102"}]
+
+14. <a name="100"></a>**Get a user event's history**
+    - **Purpose**:  Get a user event's history within a start date and an end date
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/getUserEventHistory/<"userId">/<"eventTypeId">/<"startDate">/<"endDate">
+    - **Semantics**:
+        - **userId**: Unique id of a user.
+        - **eventTypeId**: unique id of an event 
+        - **startDate**: the starting date of the query
+        - **endDate**: the ending date of the query
+    - **Sample Usages**: 
+      - **Sample http request**: http://einstein.sv.cmu.edu/getUserEventHistory/testUser/testEventType/2013-09-01/2013-12-12
+      - **Sample json result**: [{"startTime":"19:50:00","endTime":"20:00:00","date":"2013-11-08","eventTypeName":"testRecord"}]
+
+15. <a name="101"></a>**Record a user event**
+    - **Purpose**:  Record a user event item
+    - **Method**: POST
+    - **URL**: http://einstein.sv.cmu.edu/recordEvent
+    - **Semantics**:
+        - **userId**: Unique id of a user.
+        - **eventTypeId**: unique id of an event 
+        - **date**: the date of the event
+        - **startTime**: the starting time of the event
+        - **endTime**: the ending time of the event
+    - **Sample Usages**: 
+      - **Sample http request**: http://einstein.sv.cmu.edu/recordEvent/testUser/testEventType/2013-09-01/2013-12-12
+      - **Sample json result**: [{"startTime":"19:50:00","endTime":"20:00:00","date":"2013-11-08","eventTypeName":"testRecord"}]
+    - **Sample Usages**:
+      - **Command Line Example**: 
+          1. Prepare input sensor reading data in a json file:
+              - "sample_record.json" file contains: {"userId":"testUser1","eventTypeId":"testEventType","eventRecord":"testRecord", "date":"2013-11-09","startTime":"19:50:00","endTime":"20:00:00"}
+          2. curl -H "Content-Type: application/json" -d @sample_record.json "http://einstein.sv.cmu.edu/recordEvent"
+      - **Result**: "saved" if the event have been successfully recorded to the database, otherwise failed.
+
 
 [1]: http://einstein.sv.cmu.edu/ "The Application Server running in the Smart Spaces Lab, CMUSV"
 
