@@ -220,7 +220,7 @@ Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion fr
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input sensor metadata in a json file:
-              - "sensor.json" file contains: {print_name": "test_sensor", "sensor_type": "Humidity", "device_id": "test_id", "user_defined_fields": "For test"}
+              - "sensor.json" file contains: {"print_name": "test_sensor", "sensor_type": "Humidity", "device_id": "test_id", "user_defined_fields": "For test"}
           2. curl -H "Content-Type: application/json" -d @sensor.json "http://einstein.sv.cmu.edu/add_sensor"
       - **Result**: "sensor saved" if the sensor metadata have been successfully added to the database.
 
