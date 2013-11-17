@@ -35,31 +35,31 @@ Currently we are providing APIs in 5 categories:
 **Category 1: Post sensor readings**
    - [Post sensor reading data through JSON](#3)
     
-**Category 2: Query database for sensor readings**<br/>
-   - [Get sensor reading at a time point by timestamp, for a sensor (specify by sensor type) in a device](#4)<br/>
-   - [Get sensor reading at a time point by readable time, for a sensor (specify by sensor type) in a device](#20)<br/>
-   - [Get sensor readings in a time frame by timestamp, for a sensor (specify by sensor type) in a device](#5)<br/>
-   - [Get sensor readings in a time frame by readable time, for a sensor (specify by sensor type) in a device](#21)<br/>
-   - [Get current sensor readings for a sensor type in all registered devices](#6)<br/>
+**Category 2: Query database for sensor readings**  
+   - [Get sensor reading at a time point by timestamp, for a sensor (specify by sensor type) in a device](#4)  
+   - [Get sensor reading at a time point by readable time, for a sensor (specify by sensor type) in a device](#20)  
+   - [Get sensor readings in a time frame by timestamp, for a sensor (specify by sensor type) in a device](#5)  
+   - [Get sensor readings in a time frame by readable time, for a sensor (specify by sensor type) in a device](#21)  
+   - [Get current sensor readings for a sensor type in all registered devices](#6)  
    - [Get latest sensor readings for a sensor type in all registered devices](#7)
 
-**Category 3: Query database for metadata**<br/>
+**Category 3: Query database for metadata**  
    - [Get all devices registered](#1)
    - [Get all sensor types of a specific device](#2)
     
-**Category 4: Manage metadata---under construction**<br/>
-   - [Add a sensor type](#8)<br/>
-   - [Add a sensor](#9)<br/>
-   - [Add a device type](#10)<br/>
-   - [Add a device](#11)<br/>
-   - [Edit a sensor type](#12)<br/>
-   - [Edit a sensor](#13)<br/>
-   - [Edit a device type](#14)<br/>
-   - [Edit a device](#15)<br/>
-   - [Delete a sensor type](#16)<br/>
-   - [Delete a sensor](#17)<br/>
-   - [Delete a device type](#18)<br/>
-   - [Delete a device](#19)<br/>
+**Category 4: Manage metadata---under construction**  
+   - [Add a sensor type](#8)  
+   - [Add a sensor](#9)  
+   - [Add a device type](#10)  
+   - [Add a device](#11)  
+   - [Edit a sensor type](#12)  
+   - [Edit a sensor](#13)  
+   - [Edit a device type](#14)  
+   - [Edit a device](#15)  
+   - [Delete a sensor type](#16)  
+   - [Delete a sensor](#17)  
+   - [Delete a device type](#18)  
+   - [Delete a device](#19)  
 
 **Category 5: Manage user events---under construction**
    - [Get a user event's history](#100)
@@ -69,11 +69,8 @@ Currently we are providing APIs in 5 categories:
 Detailed Usages:
 ==============
 
-<font color="green"><b>MG: I would reorganize so groups of descriptions match the high level summary, grouped in the categories above</b></font>
-
 Note: all TimeStamps are in Unix epoch time format to millisecond. Conversion from readable timestamp format to Unix epoch timestamp can be found in http://www.epochconverter.com
 
-<font color="green"><b>MG: Why do we say URI in some places, DEVICE_ID in other and (previously?) ID in others. And in meta-model, thinsg are called "GUID". Is this a deciion not to be consistent with model?</b></font>
 
 Category 1:
 --------------
@@ -83,12 +80,12 @@ Category 1:
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/sensors
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA, etc.
-        - **device_id** (string): Unique device uri/id.<font color="green""><b>MG: Used to be just "ID" - what is in system? See example below….</b></font>
+        - **device_id** (string): Unique device uri/id.
         - **timestamp** (int): Recording timestamp of the sensor reading in Unix epoch timestamp format. 
         - **sensor_type** (string): Type of the sensor, e.g., temperature, CO2 Levels, etc. It is user's responsibility to tag the correct sensor type to the sensor reading.
         - **sensor_value** (double): The value of the sensor reading. It is user's responsibility to calibrate the sensor readings before publishing. 
     - **Sensor data format**: {"device_id":<"device_id">, "timestamp": <"timestamp">, <"sensor_type">: <"sensor_value">} 
-        <br/> Note: more than one (sensor_type:sensor_value) pairs can be included in a json string
+           Note: more than one (sensor_type:sensor_value) pairs can be included in a json string
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input sensor reading data in a json string:
@@ -111,8 +108,10 @@ Category 2:
         - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.) to query.
         - **result_format**: Either json or csv.
     - **Sample Usages**: 
-      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/csv<br/> (note: "temp" represents the temperature sensor type)
-      - **Sample csv result**: (device_id,timestamp,sensor_type,value)<br> <font color="green"><b>MG: No () around CSV header</b></font></br>10170102,1368568896000,temp,518.0
+      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/csv   (note: "temp" represents the temperature sensor type)
+      - **Sample csv result**: 
+        device_id,timestamp,sensor_type,value  
+        10170102,1368568896000,temp,518.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/temp/json
       - **Sample json result**: {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}
 
@@ -134,9 +133,9 @@ Category 2:
           ...  
           10170102,1368568896000,temp,518.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/1368568996000/temp/json
-      - **Sample json result**: <br/>
+      - **Sample json result**:   
           [{"timestamp":1368568993000,"sensor_type":"temp","value":517,"device_id":"10170102"},
-          ... <br/>
+          ...   
           {"timestamp":1368568896000,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
 3. <a name="6"></a>**GET CURRENT SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
@@ -151,18 +150,18 @@ Category 2:
       - **Sample csv request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/csv
       - **Sample csv result**: 
           device_id,timestamp,sensor_type,value  
-          10170203,1368568896000,temp,513.0 <br/>
-          ... <br/>
+          10170203,1368568896000,temp,513.0   
+          ...   
           10170204,1368568889000,temp,516.0
       - **Sample json request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/json
-      - **Sample json result**: <br/>
+      - **Sample json result**:   
           [{"timestamp":1368568896000,"sensor_type":"temp","value":513,"device_id":"10170203"},
-          ... <br/>
+          ...   
           {"timestamp":1368568889000,"sensor_type":"temp","value":516,"device_id":"10170204"}]
 
 
 4. <a name="7"></a>**GET LATEST SENSOR READINGS AT A TIME POINT FOR A TYPE OF SENSOR IN ALL REGISTERED DEVICES**
-    - **Purpose**: Query all latest sensor readings, of a specific sensor type contained in all devices.  If no reading for a sensor in the last 60 seconds, the latest stored reading of the corresponding sensor will be returned. <br><font color="green"><b>MG: LASTEST is confusing relative to LAST</b></font><br>
+    - **Purpose**: Query all latest sensor readings, of a specific sensor type contained in all devices.  If no reading for a sensor in the last 60 seconds, the latest stored reading of the corresponding sensor will be returned. 
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/<"sensor_type">/<"result_format">
     - **Semantics**:
@@ -177,9 +176,9 @@ Category 2:
           ...  
           10170204,1368568889000,temp,515.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/temp/json
-      - **Sample json result**: <br/>
+      - **Sample json result**:   
         [{"timestamp":1368568896000,"sensor_type":"temp","value":513,"device_id":"10170203"},
-        ... <br/>
+        ...   
         {"timestamp":1368568889000,"sensor_type":"temp","value":515,"device_id":"10170204"}]
 
 5. <a name="20"></a>**GET SENSOR READINGS OF A TYPE OF SENSOR IN A DEVICE AT A TIME BY READABLE TIME**
@@ -192,9 +191,10 @@ Category 2:
         - **sensor_type**: Type of the sensor (e.g., temperature, CO2, etc.) to query.
         - **result_format**: Either json or csv.
     - **Sample Usages**: 
-      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/05-14-2013T15:01:36/temp/csv?dateformat=ISO8601<br/> (note: "temp" represents the temperature sensor type)
-      - **Sample csv result**: (device_id,timestamp,sensor_type,value) <font color="green"<b>MG: No () around header </b></font>
-      </br>10170102,05-04-2013T12:00:00,temp,518.0
+      - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/05-14-2013T15:01:36/temp/csv?dateformat=ISO8601   (note: "temp" represents the temperature sensor type)
+      - **Sample csv result**: 
+        device_id,timestamp,sensor_type,value  
+        10170102,05-04-2013T12:00:00,temp,518.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/05-14-2013T15:01:36/temp/json?dateformat=ISO8601
       - **Sample json result**: {"time":05-04-2013T12:00:00,"sensor_type":"temp","value":518,"device_id":"10170102"}
 
@@ -216,9 +216,9 @@ Category 2:
           ...  
           10170102,05-05-2013T12:00:00,temp,518.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/05-04-2013T12:00:00/05-05-2013T12:00:00/temp/json?dateformat=ISO8601
-      - **Sample json result**: <br/>
+      - **Sample json result**:   
           [{"time":05-04-2013T12:00:00,"sensor_type":"temp","value":517,"device_id":"10170102"},
-          ... <br/>
+          ...   
           {"time":05-05-2013T12:00:00,"sensor_type":"temp","value":518,"device_id":"10170102"}]
 
 
@@ -237,8 +237,8 @@ Category 3:
         - **result_format**: Either json or csv (2 formats are supported).
     - **Sample Usages**:
       - **Sample request in csv format**: http://einstein.sv.cmu.edu/get_devices/csv
-      - **Sample result in csv format**: <br/>
-          uri,device_type,device_agent,device_location <br/>
+      - **Sample result in csv format**:   
+          uri,device_type,device_agent,device_location   
           10170202,Firefly_v3,SensorAndrew2,B23.216
       - **Sample request in json format**: http://einstein.sv.cmu.edu/get_devices/json
       - **Sample result in json format**: {"device_type":"Firefly_v3","device_location":"B23.216","device_agent":"SensorAndrew2","uri":"10170202"}
@@ -253,21 +253,19 @@ Category 3:
         - **result_format**: Either json or csv.
     - **Sample Usages**:
       - **Sample csv request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/csv
-      - **Sample csv result**: <br/>
-          sensor_types<br/>
-          temp<br/>
-          digital_temp<br/>
-          <font color="green">light
-          pressure<br/>
-          humidity<br/>
-          motion<br/>
-          audio_p2p<br/>
-          acc_x<br/>
-          acc_y<br/>
-          acc_z <br/>
-          </font>
-          
-          <font color="green"><b>MG: Note, sensor types are strings</b><br></font>
+      - **Sample csv result**:   
+          sensor_types  
+          temp  
+          digital_temp  
+          light  
+          pressure  
+          humidity  
+          motion  
+          audio_p2p  
+          acc_x  
+          acc_y  
+          acc_z   
+
           
       - **Sample json request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/json        
       - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
@@ -345,7 +343,7 @@ Category 4:
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input device metadata in a json file:
-              - "device.json" file contains: {<font color="green"><b>MG:"device_id":"test-device"</b></font>, device_type": "test_device_type", "device_agent": "test_device_agent", "network_address": "test_network_address", "location_description": "test_location_description", "latitude": "test_latitude", "longitude": "test_longitude", "altitude": "test_altitude", "position_format_system": "test_position_format_system", "user_defined_fields": "For test"}
+              - "device.json" file contains: {"device_id":"test-device", device_type": "test_device_type", "device_agent": "test_device_agent", "network_address": "test_network_address", "location_description": "test_location_description", "latitude": "test_latitude", "longitude": "test_longitude", "altitude": "test_altitude", "position_format_system": "test_position_format_system", "user_defined_fields": "For test"}
           2. curl -H "Content-Type: application/json" -d @device.json "http://einstein.sv.cmu.edu/add_device"
       - **Result**: "device saved" if the device metadata have been successfully added to the database.
 
