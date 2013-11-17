@@ -265,9 +265,7 @@ Category 3:
           acc_x  
           acc_y  
           acc_z   
-
-          
-      - **Sample json request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/json        
+      - **Sample json request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/json  
       - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
 
 
@@ -355,7 +353,7 @@ Category 4:
         - **sensor_type** (string): Name of the sensor type.
 
 
-6. <a name="17"></a>**Delete a sensor **
+6. <a name="17"></a>**Delete a sensor**
     - **Purpose**: Delete a sensor
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/delete_sensor/"<sensor_name>"
