@@ -128,10 +128,11 @@ Category 2:
         - **result_format**: Either json or csv.
     - **Sample Usages**: 
       - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/1368568996000/temp/csv
-      - **Sample csv result**: (device_id,timestamp,sensor_type,value)<br/><font color="green"><b>MG: No () around CSV header</b></font><br>
-          10170102,1368568993000,temp,517.0 <br/>
-          ... <br/>
-          10170102,1368568896000,temp,518.0
+      - **Sample csv result**: 
+          device_id,timestamp,sensor_type,value  
+          10170102,1368568993000,temp,517.0  
+          ...  
+          10170102,1368568896000,temp,518.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/1368568896000/1368568996000/temp/json
       - **Sample json result**: <br/>
           [{"timestamp":1368568993000,"sensor_type":"temp","value":517,"device_id":"10170102"},
@@ -148,7 +149,8 @@ Category 2:
         - **result_format**: Either json or csv.
     - **Sample Usages**: 
       - **Sample csv request**: http://einstein.sv.cmu.edu/last_readings_from_all_devices/1368568896000/temp/csv
-      - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br> <font color="green"><b>MG: no () around CSV header</b></font><br>
+      - **Sample csv result**: 
+          device_id,timestamp,sensor_type,value  
           10170203,1368568896000,temp,513.0 <br/>
           ... <br/>
           10170204,1368568889000,temp,516.0
@@ -169,10 +171,11 @@ Category 2:
         - Note: The difference between API#7 and API#6 (last_readings_from_all_devices) given the current timestamp is that, API#7 returns the last readings stored for each device even if it is more than 60 seconds old.
     - **Sample Usages**: 
       - **Sample csv request**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/temp/csv     
-      - **Sample csv result**: (device_id,timestamp,sensor_type,value) </br> <font color="green"><b>MG: no () around header</b></font><br>
-          10170203,1368568896000,temp,513.0 <br/>
-          ... <br/>
-          10170204,1368568889000,temp,515.0
+      - **Sample csv result**: 
+          device_id,timestamp,sensor_type,value  
+          10170203,1368568896000,temp,513.0  
+          ...  
+          10170204,1368568889000,temp,515.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/lastest_readings_from_all_devices/temp/json
       - **Sample json result**: <br/>
         [{"timestamp":1368568896000,"sensor_type":"temp","value":513,"device_id":"10170203"},
@@ -207,10 +210,11 @@ Category 2:
         - **result_format**: Either json or csv.
     - **Sample Usages**: 
       - **Sample csv request**: http://einstein.sv.cmu.edu/sensors/10170102/05-04-2013T12:00:00/05-05-2013T12:00:00/temp/csv?dateformat=ISO8601
-      - **Sample csv result**: (device_id,timestamp,sensor_type,value) <font color="green"><b> MG: Does not have () around header </b></font><br/>
-          10170102,05-04-2013T12:00:00,temp,517.0 <br/>
-          ... <br/>
-          10170102,05-05-2013T12:00:00,temp,518.0
+      - **Sample csv result**: 
+          device_id,timestamp,sensor_type,value  
+          10170102,05-04-2013T12:00:00,temp,517.0  
+          ...  
+          10170102,05-05-2013T12:00:00,temp,518.0  
       - **Sample json request**: http://einstein.sv.cmu.edu/sensors/10170102/05-04-2013T12:00:00/05-05-2013T12:00:00/temp/json?dateformat=ISO8601
       - **Sample json result**: <br/>
           [{"time":05-04-2013T12:00:00,"sensor_type":"temp","value":517,"device_id":"10170102"},
@@ -276,7 +280,7 @@ Category 4:
     - **Purpose**: Add a new sensor type to sensor data service platform.
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_sensor_type
-    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
         - **sensor_type** (string): Name of the sensor type.
         - **user_defined_fields** (string): User defined fields. 
     - **Sensor type metadata format**: {"sensor_type": <"sensor_type">, "user_defined_fields": <"user_defined_fields">}    
@@ -291,17 +295,16 @@ Category 4:
     - **Purpose**: Add a new sensor to sensor data service platform.
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_sensor
-    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
-        - **print_name** (string): Name of the sensor.
-        - **sensor_type** (string): Its sensor type.
-        - **device_id** (string): The device ID it belongs to. <br>
-        <font color="green"><b>MG: Surely, this should be DEVICE_TYPE, which is a "template: for devices of this type. Note also we could have several sensors of same type with different print names. Does this mean we can can have more that one sensor of a sensor_type in a device_type?"</b></font><br>
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
+        - **print_name** (string): Name of the sensor.  
+        - **sensor_type** (string): Its sensor type.  
+        - **device_id** (string): The device ID it belongs to.  
         - **user_defined_fields** (string): User defined fields. 
     - **Sensor metadata format**: {"print_name": <"print_name">, "sensor_type": <"sensor_type">, "device_id": <"device_id">, "user_defined_fields": <"user_defined_fields">}    
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input sensor metadata in a json file:
-              - "sensor.json" file contains: {print_name": "test_sensor", "sensor_type": "Humidity", <font color="green"><b>"device_id": "test_id" - MG: Fix this? should not be device, should be device_type</font></b>, "user_defined_fields": "For test"}
+              - "sensor.json" file contains: {print_name": "test_sensor", "sensor_type": "Humidity","device_id": "test_id", "user_defined_fields": "For test"}
           2. curl -H "Content-Type: application/json" -d @sensor.json "http://einstein.sv.cmu.edu/add_sensor"
       - **Result**: "sensor saved" if the sensor metadata have been successfully added to the database.
 
@@ -309,26 +312,25 @@ Category 4:
     - **Purpose**: Add a new device type to sensor data service platform.
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_device_type
-    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
-        - **device_type_name** (string): Name of the device type <font color="green"><b>MG: Why add -name? Elsewhere just use "device_type"</b></font>.
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
+        - **device_type** (string): Name of the device type.
         - **manufacturer** (string): Name of the manufacturer.
         - **version** (string): Version of the device type.
         - **user_defined_fields** (string): User defined fields. 
-    - **Sensor type metadata format**: {"device_type_name": <"device_type_name">, "manufacturer": <"manufacturer">, "version": <"version">, "user_defined_fields": <"user_defined_fields">}    
+    - **Sensor type metadata format**: {"device_type": <"device_type">, "manufacturer": <"manufacturer">, "version": <"version">, "user_defined_fields": <"user_defined_fields">}    
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input device type metadata in a json file:
-              - "device_type.json" file contains: {"device_type_name": "test_device_type", "manufacturer": "TI", "version": "1.0", "user_defined_fields": "For test"}
-          2. curl -H "Content-Type: application/json" -d @sensor_type.json "http://einstein.sv.cmu.edu/add_device_type"
-          <p><font color="green"><b>Need to add a small python or other example, else people think its only possible via CURL</b><br></font>
+              - "device_type.json" file contains: {"device_type": "test_device_type", "manufacturer": "TI", "version": "1.0", "user_defined_fields": "For test"}
+          2. curl -H "Content-Type: application/json" -d @device_type.json "http://einstein.sv.cmu.edu/add_device_type"
       - **Result**: "device type saved" if the device type metadata has been successfully added to the database.
 
 4. <a name="11"></a>**ADD DEVICE**
     - **Purpose**: Add a new device to sensor data service platform.
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_device
-    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, etc.
-        - <font color="green"><b>**device_id** (string): Name of the device being added. - MG: I think should be part of this command, else we dont know what device it is?? </font></b><br>
+    - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
+        - **device_id** (string): Name of the device being added.  
         - **device_type** (string): Name of the device type.
         - **device_agent** (string): Name of the device agent.
         - **network_address** (string): The network address.
@@ -338,9 +340,8 @@ Category 4:
         - **altitude** (string): Altitude.
         - **position_format_system** (string): Format of the position.
         - **user_defined_fields** (string): User defined fields. 
-    - **Sensor metadata format**: {<font color="green"><b>MG:"device_id" : <"device_name"></b></font>,"device_type": <"device_type">, "device_agent": <"device_agent">, "network_address": <"network_address">, "location_description": <"location_description">, "latitude": <"latitude">, "longitude": <"longitude">, "altitude": <"altitude">, "position_format_system": <"position_format_system">, "user_defined_fields": <"user_defined_fields">}    
+    - **Sensor metadata format**: {"device_id" : <"device_name">,"device_type": <"device_type">, "device_agent": <"device_agent">, "network_address": <"network_address">, "location_description": <"location_description">, "latitude": <"latitude">, "longitude": <"longitude">, "altitude": <"altitude">, "position_format_system": <"position_format_system">, "user_defined_fields": <"user_defined_fields">}    
     
-    <font color="green"><b>MG: Note that Location here is 4 strings, need to be able to store equivalent 1-4 strings in a Reading for a Mobile Location</b><br></font>
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input device metadata in a json file:
@@ -348,6 +349,34 @@ Category 4:
           2. curl -H "Content-Type: application/json" -d @device.json "http://einstein.sv.cmu.edu/add_device"
       - **Result**: "device saved" if the device metadata have been successfully added to the database.
 
+5. <a name="16"></a>**Delete a sensor type**
+    - **Purpose**: Delete a sensor type
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/delete_sensor_type/"<sensor_type>"
+    - **Semantics**: 
+        - **sensor_type** (string): Name of the sensor type.
+
+
+6. <a name="17"></a>**Delete a sensor **
+    - **Purpose**: Delete a sensor
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/delete_sensor/"<sensor_name>"
+    - **Semantics**: 
+        - **sensor_name** (string): Name of the sensor type.
+
+7. <a name="18"></a>**Delete a device type**
+    - **Purpose**: Delete a device type
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/delete_device_type/"<device_type>"
+    - **Semantics**: 
+        - **device_type** (string): Name of the device type.
+
+8. <a name="19"></a>**Delete a device**
+    - **Purpose**: Delete a device
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/delete_device/"<device_id>"
+    - **Semantics**: 
+        - **device_id** (string): id of the device.
 
 Category 5:
 ------------
@@ -385,7 +414,6 @@ Category 5:
 
 [Server]: http://einstein.sv.cmu.edu/ "The Application Server running in the Smart Spaces Lab, CMUSV"
 
-<font color="green"><b>MG: Add missing Edit, Delete commands, metat data commands, needed for testing, etc., even if not yet implemented, so we can see the proposed format and complete tests</b></font>
 
 Examples:
 ----------------
@@ -402,10 +430,10 @@ Examples:
     <pre>
       <code>
          import requests
-         requests.post("http://einstein.sv.cmu.edu/sensors", data={}, headers={}, files={}, cookies=None, auth=None)
+         data={"print_name": "test_sensor", "sensor_type": "Humidity", "device_id": "test_id", "user_defined_fields": "For test"}
+         requests.post("http://einstein.sv.cmu.edu/sensors", data=json.dumps(data), headers={"Content-Type": "application/json","Accept": "text/plain"},cookies=None, auth=None)
       </code>
     </pre>
-    <font color="green"><b>Example is incomplete, does not include JSON string</b><br></font>
     
 2. Consume Rest API in Java
     - GET
