@@ -80,16 +80,16 @@ Category 1:
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/sensors
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA, etc.
-        - **device_id** (string): Unique device uri/id.
+        - **id** (string): Unique device uri/id.
         - **timestamp** (int): Recording timestamp of the sensor reading in Unix epoch timestamp format. 
         - **sensor_type** (string): Type of the sensor, e.g., temperature, CO2 Levels, etc. It is user's responsibility to tag the correct sensor type to the sensor reading.
         - **sensor_value** (double): The value of the sensor reading. It is user's responsibility to calibrate the sensor readings before publishing. 
-    - **Sensor data format**: {"device_id":<"device_id">, "timestamp": <"timestamp">, <"sensor_type">: <"sensor_value">} 
+    - **Sensor data format**: {"id":<"device_id">, "timestamp": <"timestamp">, <"sensor_type">: <"sensor_value">} 
            Note: more than one (sensor_type:sensor_value) pairs can be included in a json string
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input sensor reading data in a json string:
-              - "sample_reading.json" file contains: {"device_id":"test", "timestamp": 1373566899100, "temp": 123}
+              - "sample_reading.json" file contains: {"id":"test", "timestamp": 1373566899100, "temp": 123}
           2. curl -H "Content-Type: application/json" -d @sample_reading.json "http://einstein.sv.cmu.edu/sensors"
       - **Result**: "saved" if the sensor readings have been successfully added to the database.
     
