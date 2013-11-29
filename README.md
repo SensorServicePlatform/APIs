@@ -45,7 +45,9 @@ Currently we are providing APIs in 5 categories:
 
 **Category 3: Query database for metadata**  
    - [Get all devices registered](#1)
-   - [Get all sensor types of a specific device](#2)
+   - [Get all sensor types of a specific device type](#2)
+   - [Get all sensors](#102)
+   - [Get all sensors of a specific device](#103)
     
 **Category 4: Manage metadata---under construction**  
    - [Add a sensor type](#8)  
@@ -268,6 +270,38 @@ Category 3:
       - **Sample json request**: http://einstein.sv.cmu.edu/get_sensor_types/firefly_v3/json  
       - **Sample json result**: {"device_type":"Firefly_v3", "sensor_type":"temp,digital_temp,light,pressure,humidity,motion,audio_p2p,acc_x,acc_y,acc_z"}
 
+3. <a name="102"></a>**GET all sensors**
+    - **Purpose**: Query all registered sensors
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/get_sensors/<"result_format">
+    - **Semantics**:        
+        - **[INPUT]**
+        - **result_format**: Either json or csv.
+        - **[OUTPUT]**
+        - **sensor_id**: the id of the sensor
+        - **sensor_name**: The name of the sensor
+        - **sensor_type**: Type of a contained sensor, e.g., temperature, CO2 level etc. A device type could correspond to multiple sensor types if the device has multiple sensors.
+        - **device_id**: the id of the device attaching the sensor  
+    - **Sample Usages**:
+      - **Sample csv request**: http://einstein.sv.cmu.edu/get_sensors/csv
+      - **Sample json request**: http://einstein.sv.cmu.edu/get_sensors/json 
+   
+4. <a name="103"></a>**GET all sensors by a specific device**
+    - **Purpose**: Query all registered sensors given an attached device's device_id
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/get_sensors_by_device_id/<"device_id">/<"result_format">
+    - **Semantics**:        
+        - **[INPUT]**
+        - **device_id**: the id of the device attaching the sensor
+        - **result_format**: Either json or csv.
+        - **[OUTPUT]**
+        - **sensor_id**: the id of the sensor
+        - **sensor_name**: The name of the sensor
+        - **sensor_type**: Type of a contained sensor, e.g., temperature, CO2 level etc. A device type could correspond to multiple sensor types if the device has multiple sensors.
+        - **device_id**: the id of the device attaching the sensor  
+    - **Sample Usages**:
+      - **Sample csv request**: http://einstein.sv.cmu.edu/get_sensors_by_device_id/mobile_device/csv
+      - **Sample json request**: http://einstein.sv.cmu.edu/get_sensors_by_device_id/mobile_device/json    
 
 Category 4:
 --------------
