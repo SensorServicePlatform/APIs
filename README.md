@@ -48,6 +48,7 @@ Currently we are providing APIs in 5 categories:
    - [Get all sensor types of a specific device type](#2)
    - [Get all sensors](#102)
    - [Get all sensors of a specific device](#103)
+   - [Get all sensor types](#104)
     
 **Category 4: Manage metadata---under construction**  
    - [Add a sensor type](#8)  
@@ -302,6 +303,29 @@ Category 3:
     - **Sample Usages**:
       - **Sample csv request**: http://einstein.sv.cmu.edu/get_sensors_by_device_id/mobile_device/csv
       - **Sample json request**: http://einstein.sv.cmu.edu/get_sensors_by_device_id/mobile_device/json    
+
+5. <a name="104"></a>**GET all sensor types**
+    - **Purpose**: Query all registered sensor types
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/get_all_sensor_types/<"result_format">
+    - **Semantics**:        
+        - **[INPUT]**
+        - **result_format**: Either json or csv.
+        - **[OUTPUT]**
+        - **sensor_type_id**: the id of the sensor type
+        - **sensor_type_name**: The name of the sensor type
+        - **manufacturer**: the sensor type's manufacturer
+        - **version**: the sensor type's version
+        - **version**: the sensor type's version
+        - **max value**: the sensor type's max value
+        - **min value**: the sensor type's min value
+        - **unit**: the sensor type's value's unit
+        - **interpreter**: the sensor type's interpreter for the value
+        - **device_type**: the device type attaching the sensor type
+    - **Sample Usages**:
+      - **Sample csv request**: http://einstein.sv.cmu.edu/get_all_sensor_types/csv
+      - **Sample json request**: http://einstein.sv.cmu.edu/get_all_sensor_types/json 
+   
 
 Category 4:
 --------------
