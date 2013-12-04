@@ -1,4 +1,4 @@
-# **So, please use timestamp after 1386168605 for retrieving data.**  
+# **Please use timestamp after 1386168605 for retrieving data.**  
 # **Because for performance reason, the old sensor reading data is archived. The new data started from 6:42am, Dec 4, 2013**
 
 <b>Released under a Dual Licensing / GPL 3.</b>
