@@ -406,7 +406,7 @@ Category 4:
 5. <a name="16"></a>**Delete a sensor type**
     - **Purpose**: Delete a sensor type
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_sensor_type/"<sensor_type>"
+    - **URL**: http://einstein.sv.cmu.edu/delete_sensor_type/"sensor_type"  
     - **Semantics**: 
         - **sensor_type** (string): Name of the sensor type.
 
@@ -414,21 +414,21 @@ Category 4:
 6. <a name="17"></a>**Delete a sensor**
     - **Purpose**: Delete a sensor
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_sensor/"<sensor_name>"
+    - **URL**: http://einstein.sv.cmu.edu/delete_sensor/"sensor_name"  
     - **Semantics**: 
         - **sensor_name** (string): Name of the sensor type.
 
 7. <a name="18"></a>**Delete a device type**
     - **Purpose**: Delete a device type
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_device_type/"<device_type>"
+    - **URL**: http://einstein.sv.cmu.edu/delete_device_type/"device_type"  
     - **Semantics**: 
         - **device_type** (string): Name of the device type.
 
 8. <a name="19"></a>**Delete a device**
     - **Purpose**: Delete a device
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_device/"<device_id>"
+    - **URL**: http://einstein.sv.cmu.edu/delete_device/"device_id"  
     - **Semantics**: 
         - **device_id** (string): id of the device.
 
