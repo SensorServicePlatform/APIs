@@ -1,3 +1,7 @@
+# ***Warning (Sorry for the inconvenience)***
+- **Please use timestamp after 1386168197000 for retrieving data. Because for performance reason, the old sensor reading data is archived. The new data started from 6:43am, Dec 4, 2013**
+- **Please refer to [this link](https://github.com/SensorServicePlatform/APIs/wiki/New-Device-Table) for the new device_id. The old device_id in this API doc may not be available any more.**  
+ 
 **Released under a Dual Licensing / GPL 3.**
 
 Sensor Service Platform APIs Version 1.1
@@ -327,15 +331,21 @@ Category 3:
       - **Sample csv request**: http://einstein.sv.cmu.edu/get_all_sensor_types/csv
       - **Sample json request**: http://einstein.sv.cmu.edu/get_all_sensor_types/json 
    
-6. <a name="104"></a>**GET all device types**
+6. <a name="105"></a>**GET all device types**
     - **Purpose**: Query all registered device types
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/get_all_device_types/<"result_format">
+    - **URL**: http://einstein.sv.cmu.edu/get_device_types/<"result_format">
     - **Semantics**:        
-    
+        - **[INPUT]**
+        - **result_format**: Either json or csv.
+        - **[OUTPUT]**
+        - **device_type_key**: the id of the device type
+        - **device_type_name**: the name of the device type
+        - **manufacturer**: the manufacturer of the device type
+        - **version**: the version of the device type
     - **Sample Usages**:
-      - **Sample csv request**: http://einstein.sv.cmu.edu/get_all_device_types/csv
-      - **Sample json request**: http://einstein.sv.cmu.edu/get_all_device_types/json 
+      - **Sample csv request**: http://einstein.sv.cmu.edu/get_device_types/csv
+      - **Sample json request**: http://einstein.sv.cmu.edu/get_device_types/json 
 
 Category 4:
 --------------
@@ -416,31 +426,31 @@ Category 4:
 5. <a name="16"></a>**Delete a sensor type**
     - **Purpose**: Delete a sensor type
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_sensor_type/"sensor_type"  
+    - **URL**: http://einstein.sv.cmu.edu/delete_sensor_type/"guid"  
     - **Semantics**: 
-        - **sensor_type** (string): Name of the sensor type.
+        - **guid** (string): the guid of the sensor type.
 
 
 6. <a name="17"></a>**Delete a sensor**
     - **Purpose**: Delete a sensor
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_sensor/"sensor_name"  
+    - **URL**: http://einstein.sv.cmu.edu/delete_sensor/"guid"  
     - **Semantics**: 
-        - **sensor_name** (string): Name of the sensor type.
+        - **guid** (string): the guid of the sensor type.
 
 7. <a name="18"></a>**Delete a device type**
     - **Purpose**: Delete a device type
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_device_type/"device_type"  
+    - **URL**: http://einstein.sv.cmu.edu/delete_device_type/"<device_type_key>"  
     - **Semantics**: 
-        - **device_type** (string): Name of the device type.
+        - **device_type_key** (string): the key of the device type.
 
 8. <a name="19"></a>**Delete a device**
     - **Purpose**: Delete a device
     - **Method**: GET
-    - **URL**: http://einstein.sv.cmu.edu/delete_device/"device_id"  
+    - **URL**: http://einstein.sv.cmu.edu/delete_device/"guid"  
     - **Semantics**: 
-        - **device_id** (string): id of the device.
+        - **guid** (string): the guid of the device.
 
 Category 5:
 ------------
