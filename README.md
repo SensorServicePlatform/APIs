@@ -49,6 +49,7 @@ Currently we are providing APIs in 5 categories:
    - [Get all sensors](#102)
    - [Get all sensors of a specific device](#103)
    - [Get all sensor types](#104)
+   - [Get all device types](#105)
     
 **Category 4: Manage metadata---under construction**  
    - [Add a sensor type](#8)  
@@ -326,6 +327,15 @@ Category 3:
       - **Sample csv request**: http://einstein.sv.cmu.edu/get_all_sensor_types/csv
       - **Sample json request**: http://einstein.sv.cmu.edu/get_all_sensor_types/json 
    
+6. <a name="104"></a>**GET all device types**
+    - **Purpose**: Query all registered device types
+    - **Method**: GET
+    - **URL**: http://einstein.sv.cmu.edu/get_all_device_types/<"result_format">
+    - **Semantics**:        
+    
+    - **Sample Usages**:
+      - **Sample csv request**: http://einstein.sv.cmu.edu/get_all_device_types/csv
+      - **Sample json request**: http://einstein.sv.cmu.edu/get_all_device_types/json 
 
 Category 4:
 --------------
