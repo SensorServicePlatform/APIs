@@ -355,6 +355,7 @@ Category 4:
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_sensor_type
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
+        - **id**: GUID
         - **sensor_type_id**: the id of the sensor type
         - **sensor_type**: The name of the sensor type
         - **manufacturer**: the sensor type's manufacturer
@@ -378,6 +379,7 @@ Category 4:
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_sensor
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
+        - **id**: GUID
         - **print_name** (string): Name of the sensor.  
         - **sensor_type** (string): Its sensor type.  
         - **device_id** (string): The device ID it belongs to.  
@@ -395,6 +397,7 @@ Category 4:
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_device_type
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
+        - **id**: GUID
         - **device_type** (string): Name of the device type.
         - **manufacturer** (string): Name of the manufacturer.
         - **version** (string): Version of the device type.
@@ -412,7 +415,8 @@ Category 4:
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_device
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
-        - **device_id** (string): Name of the device being added.  
+        - **id** (string): GUID
+        - **uri** (string): the name of the device
         - **device_type** (string): Name of the device type.
         - **device_agent** (string): Name of the device agent.
         - **network_address** (string): The network address.
