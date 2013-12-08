@@ -355,7 +355,15 @@ Category 4:
     - **Method**: POST
     - **URL**: http://einstein.sv.cmu.edu/add_sensor_type
     - **Semantics**: As a POST method, the API cannot be directly executed through a web browser.  Instead, it may be executed through Rails, JQuery, Python, BASH, JAVA etc.
-        - **sensor_type** (string): Name of the sensor type.
+        - **sensor_type_id**: the id of the sensor type
+        - **sensor_type**: The name of the sensor type
+        - **manufacturer**: the sensor type's manufacturer
+        - **version**: the sensor type's version
+        - **version**: the sensor type's version
+        - **max value**: the sensor type's max value
+        - **min value**: the sensor type's min value
+        - **unit**: the sensor type's value's unit
+        - **interpreter**: the sensor type's interpreter for the value
         - **user_defined_fields** (string): User defined fields. 
     - **Sensor type metadata format**: {"sensor_type": <"sensor_type">, "user_defined_fields": <"user_defined_fields">}    
     - **Sample Usages**:
