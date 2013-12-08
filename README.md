@@ -243,6 +243,7 @@ Category 3:
         - **device_agent**: A local server or proxy that manages a set of devices registered to it. Device agents can receive data from devices, convert data to another format (eg. JSON), and can transmit it to central server over a LAN or WAN. 
         - **device_location**: The location of the device that is transmitting sensor data. 
         - **result_format**: Either json or csv (2 formats are supported).
+        - **user_defined_fields** (string): User defined fields. 
     - **Sample Usages**:
       - **Sample request in csv format**: http://einstein.sv.cmu.edu/get_devices/csv
       - **Sample result in csv format**:   
