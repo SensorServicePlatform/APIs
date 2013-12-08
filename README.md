@@ -238,12 +238,13 @@ Category 3:
     - **Method**: GET
     - **URL**: http://einstein.sv.cmu.edu/get_devices/<"result_format">
     - **Semantics**:
+        - **device_id**: the id of the device 
         - **uri**: User-defined identifier for a device. Each uri is an identifier unique to the corresponding device
         - **device_type**: Model of the device. A device is a container (i.e., physical/virtual device) object that comprises one or more sensors and is capable of transmitting their readings over a network to a Device Agent.
         - **device_agent**: A local server or proxy that manages a set of devices registered to it. Device agents can receive data from devices, convert data to another format (eg. JSON), and can transmit it to central server over a LAN or WAN. 
         - **device_location**: The location of the device that is transmitting sensor data. 
         - **result_format**: Either json or csv (2 formats are supported).
-        - **user_defined_fields** (string): User defined fields. 
+        - **user_defined_fields** (string): User defined fields. (now storing registration time)
     - **Sample Usages**:
       - **Sample request in csv format**: http://einstein.sv.cmu.edu/get_devices/csv
       - **Sample result in csv format**:   
