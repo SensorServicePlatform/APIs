@@ -479,8 +479,8 @@ Category 5:
         - **startDate**: the starting date of the query
         - **endDate**: the ending date of the query
     - **Sample Usages**: 
-      - **Sample http request**: http://einstein.sv.cmu.edu/getUserEventHistory/testUser/testEventType/2013-09-01/2013-12-12
-      - **Sample json result**: [{"startTime":"19:50:00","endTime":"20:00:00","date":"2013-11-08","eventTypeName":"testRecord"}]
+      - **Sample http request**: http://einstein.sv.cmu.edu/getUserEventHistory/John/legLifting/2013-09-01/2013-12-12
+      - **Sample json result**: [{"startTime":"20:00:00","endTime":"20:08:00","date":"2013-11-09","eventTypeName":"testRecord"}]
 
 2. <a name="101"></a>**Record a user event**
     - **Purpose**:  Record a user event item
@@ -495,7 +495,7 @@ Category 5:
     - **Sample Usages**:
       - **Command Line Example**: 
           1. Prepare input sensor reading data in a json file:
-              - "sample_record.json" file contains: {"userId":"testUser1","eventTypeId":"testEventType","eventRecord":"testRecord", "date":"2013-11-09","startTime":"19:50:00","endTime":"20:00:00"}
+              - "sample_record.json" file contains: {"userId":"John","eventTypeId":"legLifting","eventRecord":"50", "date":"2013-11-09","startTime":"20:00:00","endTime":"20:08:00"}
           2. curl -H "Content-Type: application/json" -d @sample_record.json "http://einstein.sv.cmu.edu/recordEvent"
       - **Result**: "saved" if the event have been successfully recorded to the database, otherwise failed.
 
