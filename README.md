@@ -1,4 +1,4 @@
-# **API 1.0 and 1.1 are stopped. Please refer to [this link](https://github.com/cmusv-sc/ArchF2013-Project2-FT#sensor-service-platform-apis-version-13) for API 1.3***
+# **API 1.0 and 1.1 are stopped. Please refer to [this link](https://github.com/cmusv-sc/ArchF2013-Project2-FT#sensor-service-platform-apis-version-13) for API 1.3**
 # ~~***Warning (Sorry for the inconvenience)***~~
 - ~~**Please use timestamp after 1386168197000 for retrieving data. Because for performance reason, the old sensor reading data is archived. The new data started from 6:43am, Dec 4, 2013**~~
 - ~~**Please refer to [this link](https://github.com/SensorServicePlatform/APIs/wiki/New-Device-Table) for the new device_id. The old device_id in this API doc may not be available any more.**~~
